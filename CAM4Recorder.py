@@ -94,7 +94,9 @@ def postProcess():
         filename = os.path.split(path)[-1]
         directory = os.path.dirname(path)
         file = os.path.splitext(filename)[0]
-        call(setting['postProcessingCommand'].split() + [path, filename, directory, model,  file, 'cam4'])
+        cmd = setting['postProcessingCommand'].split()[0][1:]
+        script = setting['postProcessingCommand'].split()[1][:-1]
+        call([cmd, script, path, filename, directory, model,  file, 'cam4'])
 
 if __name__ == '__main__':
     readConfig()
